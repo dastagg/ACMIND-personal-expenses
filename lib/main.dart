@@ -56,12 +56,17 @@ class MyHomePage extends StatelessWidget {
                       Container(
                         child: Text(
                           tx.amount.toString(),
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20.0,
+                            color: Colors.purple,
+                          ),
                         ),
                         margin: const EdgeInsets.symmetric(
                             vertical: 10.0, horizontal: 15.0),
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: Colors.black,
+                            color: Colors.purple,
                             width: 2.0,
                           ),
                         ),
