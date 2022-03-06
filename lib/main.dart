@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 
 import 'transaction.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -39,7 +38,7 @@ class MyHomePage extends StatelessWidget {
         title: const Text('Flutter App'),
       ),
       body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          // mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(
@@ -50,6 +49,31 @@ class MyHomePage extends StatelessWidget {
                 elevation: 5.0,
               ),
             ),
+            Card(
+              child: Container(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    const TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Title',
+                      ),
+                    ),
+                    const TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Amount',
+                      ),
+                    ),
+                    FlatButton(
+                      onPressed: () {},
+                      child: const Text('Add Transaction'),
+                      textColor: Colors.purple,
+                    ),
+                  ],
+                ),
+              ),
+            ),
             Column(
               children: transactions.map((tx) {
                 return Card(
@@ -57,7 +81,7 @@ class MyHomePage extends StatelessWidget {
                     children: [
                       Container(
                         child: Text(
-                         '\$${tx.amount}',
+                          '\$${tx.amount}',
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20.0,
