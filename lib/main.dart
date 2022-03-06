@@ -40,9 +40,9 @@ class MyHomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
+            const SizedBox(
               width: double.infinity,
-              child: const Card(
+              child: Card(
                 color: Colors.blue,
                 child: Text('CHART'),
                 elevation: 5.0,
@@ -51,12 +51,25 @@ class MyHomePage extends StatelessWidget {
             Column(
               children: transactions.map((tx) {
                 return Card(
-                  child: Text(tx.title),
+                  child: Row(
+                    children: [
+                      Container(
+                        child: Text(
+                          tx.amount.toString(),
+                        ),
+                      ),
+                      Column(
+                        children: [
+                          Text(tx.title),
+                          Text(tx.date.toString()),
+                        ],
+                      ),
+                    ],
+                  ),
                 );
               }).toList(),
             ),
-          ]
-      ),
+          ]),
     );
   }
 }
