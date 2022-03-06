@@ -37,22 +37,25 @@ class MyHomePage extends StatelessWidget {
         title: const Text('Flutter App'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: const [
-          SizedBox(
-            width: double.infinity,
-            child: Card(
-              color: Colors.blue,
-              child: Text('CHART'),
-              elevation: 5.0,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              width: double.infinity,
+              child: const Card(
+                color: Colors.blue,
+                child: Text('CHART'),
+                elevation: 5.0,
+              ),
             ),
-          ),
-          Card(
-            color: Colors.red,
-            child: Text('List OF TX'),
-          ),
-        ],
+            Column(
+              children: transactions.map((tx) {
+                return Card(
+                  child: Text(tx.title),
+                );
+              }).toList(),
+            ),
+          ]
       ),
     );
   }
