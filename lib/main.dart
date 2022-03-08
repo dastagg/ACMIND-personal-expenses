@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-
-import 'transaction.dart';
+import 'package:personal_expenses/widgets/user_transactions.dart';
+import 'widgets/user_transactions.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +11,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Flutter App',
       home: MyHomePage(),
     );
@@ -20,22 +19,11 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  final List<Transaction> transactions = [
-    Transaction(id: 't1', title: 'Shoes', amount: 69.99, date: DateTime.now()),
-    Transaction(
-        id: 't2',
-        title: 'Weekly Groceries',
-        amount: 16.53,
-        date: DateTime.now()),
-  ];
 
   /* String? titleInput; */
   /* String? amountInput; */
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
 
-
-  MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,86 +43,7 @@ class MyHomePage extends StatelessWidget {
                 elevation: 5.0,
               ),
             ),
-            Card(
-              child: Container(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    TextField(
-                      decoration: const InputDecoration(
-                        labelText: 'Title',
-                      ),
-                      controller: titleController,
-                      /* onChanged: (value) => titleInput = value, */
-                    ),
-                    TextField(
-                      decoration: const InputDecoration(
-                        labelText: 'Amount',
-                      ),
-                      controller: amountController,
-                    /* onChanged: (value) => amountInput = value, */
-                    ),
-                    FlatButton(
-                      onPressed: () {
-                      print(titleController.text);
-                    },
-                      child: const Text('Add Transaction'),
-                      textColor: Colors.purple,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Column(
-              children: transactions.map((tx) {
-                return Card(
-                  child: Row(
-                    children: [
-                      Container(
-                        child: Text(
-                          '\$${tx.amount}',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20.0,
-                            color: Colors.purple,
-                          ),
-                        ),
-                        margin: const EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 15.0),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.purple,
-                            width: 2.0,
-                          ),
-                        ),
-                        padding: const EdgeInsets.all(10.0),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            tx.title,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16.0,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Text(
-                            DateFormat.yMMMd().format(tx.date),
-                            style: const TextStyle(
-                              fontSize: 15.0,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                );
-              }).toList(),
-            ),
+          UserTransactions(),
           ]),
     );
   }
