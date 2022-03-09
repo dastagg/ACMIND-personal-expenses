@@ -12,53 +12,70 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 300.0,
-      child: ListView.builder(
-        itemBuilder: (ctx, index) {
-          return Card(
-            child: Row(
+      child: transactions.isEmpty
+          ? Column(
               children: [
-                Container(
-                  child: Text(
-                    '\$${transactions[index].amount.toStringAsFixed(2)}',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20.0,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                  ),
-                  margin: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 15.0),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Theme.of(context).primaryColor,
-                      width: 2.0,
-                    ),
-                  ),
-                  padding: const EdgeInsets.all(10.0),
+                Text(
+                  'No transactions added yet',
+                  style: Theme.of(context).textTheme.headline6,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      transactions[index].title,
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                    Text(
-                      DateFormat.yMMMd().format(transactions[index].date),
-                      style: const TextStyle(
-                        fontSize: 15.0,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
+                const SizedBox(height: 30.0),
+                SizedBox(
+                  height: 200.0,
+                  child: Image.asset(
+                    'assets/images/waiting.png',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ],
+            )
+          : ListView.builder(
+              itemBuilder: (ctx, index) {
+                return Card(
+                  child: Row(
+                    children: [
+                      Container(
+                        child: Text(
+                          '\$${transactions[index].amount.toStringAsFixed(2)}',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20.0,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        ),
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 15.0),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Theme.of(context).primaryColor,
+                            width: 2.0,
+                          ),
+                        ),
+                        padding: const EdgeInsets.all(10.0),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            transactions[index].title,
+                            style: Theme.of(context).textTheme.headline6,
+                          ),
+                          Text(
+                            DateFormat.yMMMd().format(transactions[index].date),
+                            style: const TextStyle(
+                              fontSize: 15.0,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+              },
+              itemCount: transactions.length,
+              // children: transactions.map((tx) {}).toList(),
             ),
-          );
-        },
-        itemCount: transactions.length,
-        // children: transactions.map((tx) {}).toList(),
-      ),
     );
   }
 }
